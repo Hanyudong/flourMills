@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.sjzc.flour.pojo.Draw" table="t_draw">
+	
+        <id name="drawId" >
+            <generator class="native"/>
+        </id>
+        <property name="evidenceId" unique="true" not-null="true"/> 
+        <property name="flourWeight"/>   
+        <property name="rate"/>  
+        <property name="wheatWeight"/>
+        <property name="branWeight"/>  
+        <property name="flourType"/>  
+    </class>
+</hibernate-mapping>

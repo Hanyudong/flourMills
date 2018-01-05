@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.sjzc.flour.pojo.Customer" table="t_customer">
+	
+        <id name="customerId" >
+            <generator class="native"/>
+        </id>
+        <property name="customerName" unique="true" not-null="true"/> 
+        <property name="address"/>   
+        <property name="idCard"/>  
+        <property name="mobile"/>
+        <property name="landLine"/>    
+        <property name="state"/>
+    </class>
+</hibernate-mapping>

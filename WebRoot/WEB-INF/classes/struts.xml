@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.action.extension" value="action,do,webWork,,"/>
+    <package name="test" namespace="/" extends="struts-default">
+    
+		<action name="systemUserAction" class="systemUserAction">
+			<!-- 分页查询 -->
+			<result name="systemuserList">/sys-user-message.jsp</result>
+			
+			<!-- <result name="findAll">/sys-user-message.jsp</result> -->
+			<result name="add" type="redirectAction">/systemUserAction!getPageList</result>
+			<result name="edit">/user-update.jsp</result>
+			<result name="update" type="redirectAction">/systemUserAction!getPageList</result>
+			<result name="del" type="redirectAction">/systemUserAction!getPageList</result>
+			
+		</action>
+		
+		<action name="productTypeAction" class="productTypeAction">
+			<!-- 分页查询 -->
+			<result name="producttypeList">/product-type-management.jsp</result>
+			
+			<!-- <result name="findAll">/product-type-management.jsp</result> -->
+			<result name="add" type="redirectAction">/productTypeAction!getPageList</result>
+			<result name="edit">/product-update.jsp</result>
+			<result name="update" type="redirectAction">/productTypeAction!getPageList</result>
+			<result name="del" type="redirectAction">/productTypeAction!getPageList</result>
+		</action>
+		
+		<action name="customerAction" class="customerAction">
+			<!-- 分页查询 -->
+			<result name="customerList">/customer-management.jsp</result>
+			
+			<!-- <result name="findAll">/customer-management.jsp</result> -->
+			<result name="add" type="redirectAction">/customerAction!getPageList</result>
+			<result name="edit">/update-costomer.jsp</result>
+			<result name="update" type="redirectAction">/customerAction!getPageList</result>
+			<result name="del" type="redirectAction">/customerAction!getPageList</result>
+		</action>
+	</package>
+	
+    <!-- Add packages here -->
+
+</struts>

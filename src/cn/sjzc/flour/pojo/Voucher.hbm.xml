@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.sjzc.flour.pojo.Voucher" table="t_voucher">
+	
+        <id name="voucherId" >
+            <generator class="native"/>
+        </id>
+        <property name="evidenceId" unique="true" not-null="true"/> 
+        <many-to-one name="customer" column="customerId"></many-to-one>   
+        <property name="date"/> 
+        <property name="receivable"/>
+        <property name="collected"/>
+        <property name="agentId"/>
+        <property name="voucherType"/>
+        <property name="debtyn"/> 
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/tx 
+       http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-3.0.xsd
+       http://www.springframework.org/schema/aop 
+       http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+       
+        <context:annotation-config/>
+		<context:component-scan base-package="cn.sjzc.flour"/>
+		<context:property-placeholder location="classpath:hibernate.properties"/>
+		<!-- spring 对dao的支持 -->
+		<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+			<property name="driverClassName" value="${hibernate.connection.driver_class}"/>
+			<property name="url" value="${hibernate.connection.url}"/>
+			<property name="username" value="${hibernate.connection.username}"/>
+			<property name="password" value="${hibernate.connection.password}"/>
+		</bean>
+		<!-- 配置SessionFactory -->
+		<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+			<!--  
+			<property name="configLocation" value="classpath:hibernate.cfg.xml"/>
+			-->
+			<property name="dataSource" ref="dataSource"/>
+			<property name="hibernateProperties">
+				<props>
+					<prop key="hibernate.show_sql">true</prop>
+					<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+					<prop key="hibernate.hbm2ddl.auto">update</prop>
+					
+				</props>
+			</property>
+			<!-- 引入实体类的映射文件 -->
+			<property name="mappingResources">
+				<list>
+					<value>cn/sjzc/flour/pojo/SystemUser.hbm.xml</value>
+					<value>cn/sjzc/flour/pojo/ProductType.hbm.xml</value>
+					<value>cn/sjzc/flour/pojo/Customer.hbm.xml</value>
+					<value>cn/sjzc/flour/pojo/GrainPut.hbm.xml</value>
+					<value>cn/sjzc/flour/pojo/GrainPurchase.hbm.xml</value>
+					<value>cn/sjzc/flour/pojo/Draw.hbm.xml</value>
+					<value>cn/sjzc/flour/pojo/StockHandle.hbm.xml</value>
+					<value>cn/sjzc/flour/pojo/Sale.hbm.xml</value>
+					<value>cn/sjzc/flour/pojo/CustomerStock.hbm.xml</value>
+					<value>cn/sjzc/flour/pojo/Voucher.hbm.xml</value>
+					<value>cn/sjzc/flour/pojo/FlourStock.hbm.xml</value>
+					<value>cn/sjzc/flour/pojo/PayOut.hbm.xml</value>
+					<value>cn/sjzc/flour/pojo/FlourProcess.hbm.xml</value>
+					<value>cn/sjzc/flour/pojo/VoucherNum.hbm.xml</value>
+				</list>
+			</property>
+		</bean>
+		<!-- 配置事务管理器（管理事务的java类) -->
+		<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+			 <property name="sessionFactory" ref="sessionFactory"/>
+		</bean>
+		<!-- 事务管理aop的配置 -->
+		<aop:config>
+			<aop:pointcut expression="execution (* cn.hebic.service.impl.*.*(..))" id="allServiceMethods"/>
+			<aop:advisor advice-ref="advisor" pointcut-ref="allServiceMethods"/>
+		</aop:config>
+		
+		<!-- 配置事务管理的advice（具体策略) -->
+		<tx:advice id="advisor" transaction-manager="transactionManager">
+			<tx:attributes>
+				<tx:method name="add*" propagation="REQUIRED"/>
+				<tx:method name="del*" propagation="REQUIRED"/>
+				<tx:method name="update*" propagation="REQUIRED"/>
+				<tx:method name="*" propagation="REQUIRED" read-only="true"/>
+			</tx:attributes>
+		</tx:advice>
+		
+</beans>
+
+
+
+
+

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.sjzc.flour.pojo.SystemUser" table="t_systemuser">
+	
+        <id name="userId" >
+            <generator class="native"/>
+        </id>
+        <property name="userName" not-null="true"/> 
+        <property name="passWord"/>   
+        <property name="initpwd"/>  
+        <property name="realName"/>
+        <property name="phone"/>
+        <property name="state"/>     
+    </class>
+</hibernate-mapping>

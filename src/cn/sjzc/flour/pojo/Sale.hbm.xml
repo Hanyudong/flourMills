@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.sjzc.flour.pojo.Sale" table="t_sale">
+	
+        <id name="saleId" >
+            <generator class="native"/>
+        </id>
+        <property name="evidenceId" unique="true" not-null="true"/> 
+        <property name="typeName"/>   
+        <property name="price"/>  
+        <property name="bagNum"/>
+        <property name="unitWeight"/>   
+        <property name="total"/>  
+        <property name="weight"/>
+    </class>
+</hibernate-mapping>
+
